@@ -1,1 +1,1 @@
-web:gunicorn chaptersProject.wsgi
+web: gunicorn chaptersProject.wsgi
