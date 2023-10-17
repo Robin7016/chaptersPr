@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form method="POST">{% csrf_token %}
+{#    <h4>Kapitel</h4>#}
+    <h3>"{{ object.name }}" mit {{ object.pairs.count }} Einträgen </h3>
+    <br>
+    <h4>wirklich löschen?</h4>
+    <a style="margin-right: 40px;" class="btn btn-secondary" href="{% url 'chapters:chap_list' %}">Cancel</a>
+    <input class='btn btn-danger' type="submit" value="Confirm" />
+  </form>
+{% endblock %}

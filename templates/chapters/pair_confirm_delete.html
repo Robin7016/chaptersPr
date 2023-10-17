@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h4>{{ objChap.name }}: Textpaar löschen?</h4>
+
+
+  <hr>
+  <table>
+    <tr>
+      <td width="50%"><h4>Links</h4></td>
+      <td><h4>Rechts</h4></td>
+    </tr>
+    <tr><br></tr>
+    <tr>
+      <td>{{ objPair.textL }}</td>
+      <td>{{ objPair.textR }}</td>
+    </tr>
+  </table>
+
+  <br>
+  <br>
+{#  <h4>wirklich löschen?</h4>#}
+  <br>
+  <form method="POST">{% csrf_token %}
+    <a style="margin-right: 40px;" class="btn btn-secondary" href="{% url 'chapters:chap_detail' pk=objChap.pk %}">Cancel</a>
+    <input class='btn btn-danger' type="submit" value="Confirm" />
+  </form>
+
+{% endblock %}

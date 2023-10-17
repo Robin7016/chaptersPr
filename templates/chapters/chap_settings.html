@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block styles %}{{ form.media }}{% endblock styles %}
+
+{% block content %}
+
+  <h4>{{ chap.name }}: Abfrageeinstellungen ändern</h4>
+
+  <hr>
+
+<div class="container">
+  <form method="POST">{% csrf_token %}
+    <div class="form-check">
+      <div class="form-check-inline">
+        <input class="form-check-input" type="radio" name="LR" id="L" value="L" checked>
+        <label class="form-check-label" for="L">Links</label>
+      </div>
+      <div class="form-check-inline">
+        <input class="form-check-input" type="radio" name="LR" id="R" value="R">
+        <label class="form-check-label" for="L">Rechts</label>
+      </div>
+    </div>
+
+    <div class="form-check">
+      <div class="form-check-inline">
+        <input class="form-check-input" type="radio" name="rs" id="random" value="r" checked>
+        <label class="form-check-label" for="random">zufällige Abfrage</label>
+      </div>
+      <div class="form-check-inline">
+        <input class="form-check-input" type="radio" name="rs" id="serial" value="s">
+        <label class="form-check-label" for="serial">der Reihe nach</label>
+      </div>
+    </div>
+
+    <div>
+      <a style="margin-right: 40px;" class="btn btn-secondary" href="{% url 'chapters:chap_detail' pk=chap.pk %}">Cancel</a>
+      <button type="submit" class="btn btn-success">Sichern</button>
+    </div>
+
+
+
+  </form>
+</div>
+{% endblock content %}

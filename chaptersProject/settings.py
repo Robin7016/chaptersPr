@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-#-1fgo)47c)fdm-tr7e$o)!8bp-1b)t(9k&!#vd5_i162xzs9p
 #DEBUG = True
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'chapters-dc88634a47a1.herokuapp.com']
-#ALLOWED_HOSTS = ['127.0.0.1']
+#ALLOWED_HOSTS = ['127.0.0.1', 'chapters-dc88634a47a1.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -108,9 +108,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'de'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Berlin'
 
 USE_I18N = True
 
@@ -131,3 +131,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/chapters/'
+LOGOUT_REDIRECT_URL = '/'
+
+SESSION_COOKIE_AGE = 28800   # 8 hours in seconds

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block styles %}{{ form.media }}{% endblock styles %}
+{% block content %}
+
+  {% if objChap.lr == "L" %}
+    <table>
+      <tr><td width="50%"><h3>{{ objChap.name }}: </h3></td><td><h6> Abfrage links, {{ objChap.rs }} </h6></td></tr>
+    </table>
+  {% else %}
+    <h6>{{ objChap.name }}: Abfrage rechts, {{ objChap.rs }}</h6>
+  {% endif %}
+  <table>
+    <td width="70%">&nbsp</td>
+    <td width="10%" align="right"><a class="btn btn-success" href="#">All ({{ pairs_count }})</a></td>
+    <td width="10%" align="right"><a class="btn btn-info" href="#">Called ({{ objChap.sum1 }})</a></td>
+    <td width="10%" align="right"><a class="btn btn-danger" href="#">Failed ({{ objChap.sum2 }})</a></td>
+  </table>
+  <hr>
+
+  <table>
+    <tr>
+      <td width="50%"><h4>Links</h4></td>
+      <td width="50%"><h4>Rechts</h4></td>
+    </tr>
+  <tr><br></tr>
+  </table>
+
+
+  <form action="" method="POST">{% csrf_token %}
+
+    <table>
+      <tr>
+        {% if objChap.lr == "L" %}
+          <td width="50%">{{ pair_text }}</td>
+          <td width="50%">{{ form.textAnswered }}</td>
+        {% else %}
+          <td width="50%">{{ form.textAnswered }}</td>
+          <td width="50%">{{ pair_text }}</td>
+        {% endif %}
+       </tr>
+      </table>
+
+    <table style="margin-top:30px">
+      <tr>
+        <td width="70%">&nbsp</td>
+        <td width="10%"><a class="btn btn-secondary" href="{% url 'chapters:chap_detail' pk=objChap.pk %}">Cancel</a></td>
+        <td width="10%"><button type="submit" value="Submit" class="btn btn-info" >Check</button></td>
+        <td width="10%"><a class="btn btn-success" href="{% url 'chapters:call_next' pk=objChap.pk ct=ct %}">Next</a></td>
+      </tr>
+    </table>
+
+  </form>
+
+{% endblock content %}

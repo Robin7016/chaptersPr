@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{#{% block styles %}{{ form.media }}{% endblock styles %}#}
+{% block content %}
+
+  {% if chap.name %}
+    <h4>Kapitelnamen ändern:</h4>
+  {% else %}
+    <h4>Neues Kapitel: {{ chap.name }}</h4>
+  {% endif %}
+  <hr>
+
+  <form method="POST">{% csrf_token %}
+    <table>
+      {% for field in form %}
+
+        <tr height="40px">
+          <td>{{ field.label }}</td>
+          <td>{{ field }}</td>
+        </tr>
+      {% endfor %}
+
+    </table>
+
+    <br>
+    <div style="margin-left: 140px">
+      <a style="margin-right: 40px;" class="btn btn-secondary" href="{% url 'chapters:chap_list' %}">Cancel</a>
+      <button type="submit" class="save btn btn-success">Sichern</button>
+  </div>
+  </form>
+
+{% endblock content %}
