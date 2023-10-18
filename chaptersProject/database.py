@@ -4,7 +4,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROD = False
 SQLITE = True
-RENDER = False
+POSTGRES = False
 
 def get_database():
   if SQLITE:
@@ -13,7 +13,7 @@ def get_database():
       'NAME': BASE_DIR / 'db.sqlite3',
     }
   else:
-    if RENDER:
+    if POSTGRES:
       return {
         'ENGINE': 'django.db.postgresql_psycopg2',
         'NAME': '',
