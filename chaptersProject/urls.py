@@ -26,7 +26,7 @@ urlpatterns = [
 
     path('accounts/login/', views.LoginView.as_view(), name='login'),
     path('accounts/logout/', views.LogoutView.as_view(), name='logout', kwargs={'next_page': '/'}),
-    #path('', include('chapters.urls')),
-    path('chapters/', include('chapters.urls')),            # 19.10.23
+    path('', include('chapters.urls')),
+    #path('chapters/', include('chapters.urls')),            # 19.10.23
 ]
 

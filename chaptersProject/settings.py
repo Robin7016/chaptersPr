@@ -99,6 +99,7 @@ WSGI_APPLICATION = 'chaptersProject.wsgi.application'
 #         'PORT': '5432'
 #     }
 # }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
