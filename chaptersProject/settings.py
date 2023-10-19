@@ -86,9 +86,21 @@ WSGI_APPLICATION = 'chaptersProject.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
 DATABASES = {
-    'default': database.get_database()
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'chaptersdb',
+        'USER': 'postgres',
+        'PASSWORD': 'pages636',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
 }
+
+# DATABASES = {
+#     'default': database.get_database()
+# }
 
 
 # Password validation

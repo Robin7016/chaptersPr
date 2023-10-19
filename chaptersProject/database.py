@@ -1,10 +1,10 @@
-import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-PROD = False
-SQLITE = True
-POSTGRES = False
+SQLITE = False
+POSTGRES = True
+HEROKU = False
+
 
 def get_database():
   if SQLITE:
@@ -16,10 +16,10 @@ def get_database():
     if POSTGRES:
       return {
         'ENGINE': 'django.db.postgresql_psycopg2',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
+        'NAME': 'chaptersdb',
+        'USER': 'postgres',
+        'PASSWORD': 'pages636',
+        'HOST': 'localhost',
         'PORT': '5432'
       }
     else:
