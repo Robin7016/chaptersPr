@@ -1,9 +1,15 @@
 asgiref==3.7.2
 Django==4.2.6
+django-database-url==1.0.3
 gunicorn==21.2.0
 packaging==23.2
 psycopg2==2.9.9
 sqlparse==0.4.4
 whitenoise==6.5.0
-django-heroku==0.3.0
-django-database-url==1.0.3
+django-heroku==0.3.1
+dj-config-url==0.1.1
+dj-database-url==0.5.0
+django-cors-headers==3.5.0
+django-crispy-forms==1.9.2
+python-dotenv==0.15.0
+pytz==2020.1
