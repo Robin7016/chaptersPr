@@ -87,16 +87,28 @@ WSGI_APPLICATION = 'chaptersProject.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'chaptersdb',
+#         'USER': 'postgres',
+#         'PASSWORD': 'pages636',
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'chaptersdb',
-        'USER': 'postgres',
-        'PASSWORD': 'pages636',
-        'HOST': 'localhost',
+        'NAME': 'd7lo27m0omlplf',
+        'USER': 'ujmivcjgvatuwa',
+        'PASSWORD': '56fe622a8b3bdc316dd24171f731396252c9af8d4c5cc3cab6a8974c1b49f341',
+        'HOST': 'ec2-34-242-199-141.eu-west-1.compute.amazonaws.com',
         'PORT': '5432'
     }
 }
+
+
 
 # DATABASES = {
 #     'default': database.get_database()
