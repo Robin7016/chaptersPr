@@ -14,7 +14,7 @@ from pathlib import Path
 
 import django_heroku
 
-from chaptersProject import database
+#from chaptersProject import database # means database.py switch for environment
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
