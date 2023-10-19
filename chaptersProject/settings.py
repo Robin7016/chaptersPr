@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+import django_heroku
+
 from chaptersProject import database
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -30,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'chapters-dc88634a47a1.herokuapp.com']
 #ALLOWED_HOSTS = ['127.0.0.1']
-
+#ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -151,6 +153,9 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+django_heroku.settings(locals())
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type

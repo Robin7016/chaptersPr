@@ -5,5 +5,5 @@ packaging==23.2
 psycopg2==2.9.9
 sqlparse==0.4.4
 whitenoise==6.5.0
-SQLAlchemy==2.0.22
-alembic==1.6.5
+django-heroku==0.3.0
+django-database-url==1.0.3

@@ -1,1 +1,2 @@
-web: gunicorn chaptersProject.wsgi
+release: python manage.py migrate
+web: gunicorn chaptersProject.wsgi --log-file
