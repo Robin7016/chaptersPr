@@ -38,8 +38,9 @@ SECRET_KEY = os.environ['SECRET_KEY']   #instead of your secret key
 #SECRET_KEY = 'fp=4$h6(bz6t3esl5mo#g@mhp0u@3%80ew)oe(2il20@nxy9qx' seit 20.10.23
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG see later
 #DEBUG = True
-DEBUG = False
+#DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'chapters-dc88634a47a1.herokuapp.com']
 #ALLOWED_HOSTS = ['127.0.0.1']
@@ -103,9 +104,11 @@ WSGI_APPLICATION = 'chaptersProject.wsgi.application'
 # }
 
 IS_SQLITE_APP = False
-IS_HEROKU_APP = True
+IS_HEROKU_APP = True    # if False then postgres-localdb
+DEBUG = True
 
 if IS_SQLITE_APP:
+    DEBUG = True
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -114,11 +117,23 @@ if IS_SQLITE_APP:
     }
 else:
     if IS_HEROKU_APP:
-        DATABASES = {
-            "default": dj_database_url.config(
-            conn_max_age=600,
-            ssl_require=True,
-        )
+        if DEBUG:
+            DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+                    'NAME': 'd7lo27m0omlplf',
+                    'USER': 'ujmivcjgvatuwa',
+                    'PASSWORD': '56fe622a8b3bdc316dd24171f731396252c9af8d4c5cc3cab6a8974c1b49f341',
+                    'HOST': 'ec2-34-242-199-141.eu-west-1.compute.amazonaws.com',
+                    'PORT': '5432'
+                }
+            }
+        else:
+            DATABASES = {
+                "default": dj_database_url.config(
+                    conn_max_age=600,
+                    ssl_require=True,
+            )
     }
     else:
         DATABASES = {
