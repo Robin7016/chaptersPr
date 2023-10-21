@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import dotenv
 import django_heroku
+import dj_database_url
 
 from pathlib import Path
 
@@ -101,30 +102,48 @@ WSGI_APPLICATION = 'chaptersProject.wsgi.application'
 #     }
 # }
 
+IS_SQLITE_APP = False
+IS_HEROKU_APP = True
+
+if IS_SQLITE_APP:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+else:
+    if IS_HEROKU_APP:
+        DATABASES = {
+            "default": dj_database_url.config(
+            conn_max_age=600,
+            ssl_require=True,
+        )
+    }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql_psycopg2',
+                'NAME': 'chaptersdb',
+                'USER': 'postgres',
+                'PASSWORD': 'pages636',
+                'HOST': 'localhost',
+                'PORT': '5432'
+            }
+        }
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'chaptersdb',
-#         'USER': 'postgres',
-#         'PASSWORD': 'pages636',
-#         'HOST': 'localhost',
+#         'NAME': 'd7lo27m0omlplf',
+#         'USER': 'ujmivcjgvatuwa',
+#         'PASSWORD': '56fe622a8b3bdc316dd24171f731396252c9af8d4c5cc3cab6a8974c1b49f341',
+#         'HOST': 'ec2-34-242-199-141.eu-west-1.compute.amazonaws.com',
 #         'PORT': '5432'
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd7lo27m0omlplf',
-        'USER': 'ujmivcjgvatuwa',
-        'PASSWORD': '56fe622a8b3bdc316dd24171f731396252c9af8d4c5cc3cab6a8974c1b49f341',
-        'HOST': 'ec2-34-242-199-141.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432'
-    }
-}
-
-
-
+# for other type of database switch with database.py and function get_database:
 # DATABASES = {
 #     'default': database.get_database()
 # }
@@ -167,20 +186,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/chapters/'
 LOGOUT_REDIRECT_URL = '/'
 
 SESSION_COOKIE_AGE = 28800   # 8 hours in seconds
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import dj_database_url
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+#DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)  #heroku
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())   #heroku
