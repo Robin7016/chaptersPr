@@ -105,6 +105,7 @@ IS_SQLITE_APP = False
 IS_HEROKU_APP = True  # if False then postgres-localdb
 DEBUG = False
 
+
 if IS_SQLITE_APP:
   DEBUG = True
   DATABASES = {
