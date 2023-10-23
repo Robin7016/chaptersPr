@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ chap.name }}{% endblock title %}
+{% block content %}
+
+
+  <table border="0">
+    <tr>
+      <td width="400px"><h3>{{ chap.name }}</h3></td>
+      <td width="20px"  align="right"><a href="{% url 'chapters:add_pair_to_chap' pk=chap.pk %}"> <i class="far fa-plus-square"></i></a></td>
+      <td width="130px" align="right"><a class="btn btn-outline-secondary" href="{% url 'chapters:settings' pk=chap.pk %}">Query Settings ({{ chap.lr }}, {{ chap.rs }}):</a></td>
+      <td width="100px" align="right"><a class="btn btn-success" href="{% url 'chapters:callPairs' pk=chap.pk ct=0 %}">All ({{ chap.pairs.count }})</a></td>
+      <td width="100px" align="right"><a class="btn btn-info" href="{% url 'chapters:callPairs' pk=chap.pk ct=1 %}">Called ({{ chap.sum1 }})</a></td>
+      <td width="100px" align="right"><a class="btn btn-danger" href="{% url 'chapters:callPairs' pk=chap.pk ct=2 %}">Failed ({{ chap.sum2 }})</a></td>
+      <td width="100px" align="right"><a class="btn btn-warning" href="{% url 'chapters:callReset' pk=chap.pk %}">Reset</a></td>
+    </tr>
+  </table>
+  <hr>
+
+
+{#  <div class="container">#}
+    {% if chap.pairs.count > 0 %}
+      {% if user.is_authenticated %}
+        <table border="0">
+          {% for pair in chap.pairs.all|dictsort:"id" %}
+            <tr>
+              <td width="40%">{{ pair.textL }}</td>
+              <td width="40%">{{ pair.textR }}</td>
+              <td width="5%" align="right"><p><a  href="{% url 'chapters:pair_edit' pk=chap.pk id=pair.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i></a></p></td>
+              <td width="5%" align="right"><p><a  href="{% url 'chapters:pair_remove' pk=chap.pk id=pair.pk %}"><span class="fa fa-trash-o" aria-hidden="true"></span></a></p></td>
+              {% if pair.status == 1 %}
+                <td width="5%" align="right"><p><i class="fa fa-check" aria-hidden="true" style="color:green"></i></p></td>
+              {% elif pair.status == 2 %}
+                <td width="5%" align="right"><p><span class="fas fa-minus" style="color:red"></span></p></td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+      </table>
+ {% endif %}
+    {% else %}
+      <p>Noch keine Texte vorhanden</p>
+    {% endif %}
+{#  </div>#}
+
+{% endblock content %}

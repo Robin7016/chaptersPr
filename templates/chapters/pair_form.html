@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block styles %}{{ form.media }}{% endblock styles %}
+{% block content %}
+{#  sender="Create" from add_pair_to_chap#}
+{#  sender="Update" from PairUpdateView initial_values#}
+{#  object=chap#}
+
+
+  {% if sender == "Update" %}
+    <table>
+      <tr>
+        <td><h3>{{ chap.name }}: Texte ändern</h3></td>
+      </tr>
+    </table>
+  {% else %}
+    <table>
+      <tr>
+        <td width="50%"><h3>{{ chap.name }}: neues Textpaar</h3></td>
+        <td width="100px" align="left"><a class="btn btn-success" href="#">All ({{ chap.pairs.count }})</a>
+      </tr>
+    </table>
+  {% endif %}
+  <hr>
+
+
+<form method="POST">
+{% csrf_token %}
+<table>
+  <tr>
+    <td width="50%"><h4>Links</h4></td>
+    <td><h4>Rechts</h4></td>
+  </tr>
+  <tr>
+    <td>{{ form.textL }}</td>
+    <td>{{ form.textR }}</td>
+  </tr>
+  </table>
+
+  <table style="margin-top: 30px" width="100%">
+  <tr>
+    <td width="50%"><a class="btn btn-secondary" href="{% url 'chapters:chap_detail' pk=chap.pk %}">Cancel</a></td>
+    <td width="50%"><button type="submit" value="Update" class="btn btn-success">Submit</button></td>
+  </tr>
+</table>
+
+</form>
+
+{% endblock content %}
